@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import Main from './components/Main';
+import SideSection  from './components/SideSection';
+import { LocationProvider } from './contexts/location/LocationContext';
+import { ScreenProvider } from './contexts/Screen/ScreenContext';
+import { SearchProvider } from './contexts/search/SearchContext';
+import { WeatherProvider } from './contexts/weather/WeatherContext';
+// import SearchBar from './tests/SearchBar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LocationProvider>
+      <SearchProvider>
+        <WeatherProvider>
+          <ScreenProvider>
+            <div className="max-w-[100vw] lg:h-screen min-h-[640px] flex flex-col sm:overflow-hidden px-2 sm:px-10 py-2 sm:py-4 bg-primary">
+              <Header />
+              <div className='w-full flex-1 flex flex-col lg:flex-row gap-5'>
+                <Main />
+                <SideSection />
+              </div>
+            </div>
+            {/* <SearchBar /> */}
+          </ScreenProvider>
+        </WeatherProvider>
+      </SearchProvider>
+    </LocationProvider>
   );
 }
 
