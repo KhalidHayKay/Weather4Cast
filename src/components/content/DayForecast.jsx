@@ -6,8 +6,8 @@ const DayForecast = ({
 	},
 	isCelsius,
 }) => {
-	const [today, ...othersDays] = days;
-	othersDays.pop();
+	days.shift();
+	days.pop();
 
 	const celsiusToFahrenheit = (celsius) => (celsius * 9) / 5 + 32;
 
@@ -17,7 +17,7 @@ const DayForecast = ({
 				5 Days Forecast:
 			</h2>
 			<div className='flex flex-col'>
-				{othersDays.map((day) => (
+				{days.map((day) => (
 					<div
 						className='grid grid-cols-[0.3fr,0.7fr,1fr] items-center'
 						key={day.datetime}

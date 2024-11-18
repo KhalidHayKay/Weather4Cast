@@ -1,7 +1,7 @@
 import { ReactComponent as Search } from '../../resources/Search.svg';
 import { ReactComponent as CurrentLocation } from '../../resources/CurrentLocation.svg';
 import ThemeController from './ThemeController';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import UnitContext from '../../contexts/Unit/UnitContext';
 
 const Header = () => {
@@ -16,7 +16,7 @@ const Header = () => {
 
 			<form
 				action='/'
-				className='relative row-start-2 tab:row-start-auto col-span-3 tab:col-span-1 w-full sm:w-3/4 tab:w-full pl-10 mobile:pl-14 mx-0 mx-auto rounded-3xl bg-secondary text-white shadow-md shadow-primary/50 border border-primary overflow-hidden'
+				className='relative row-start-2 tab:row-start-auto col-span-3 tab:col-span-1 w-full sm:w-3/4 tab:w-full pl-10 mobile:pl-14 rounded-3xl bg-secondary text-white shadow-md shadow-primary/50 border border-primary overflow-hidden'
 			>
 				<Search className='absolute top-1/2 left-3 mobile:left-4 -translate-y-1/2 size-5 mobile:size-6 sm:size-7' />
 				<input
