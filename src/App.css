@@ -1,28 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+	@apply bg-primary !important;
+}
 
 body {
-  font-family: "Manrope", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
+	@apply bg-gradient-to-tl from-primary to-secondary;
+	min-height: 100vh;
+	font-family: 'Poppins', sans-serif;
 }
 
-#weather.active {
-  @apply text-primary-content;
+.shadow-custom {
+	box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 50%);
 }
 
-.active-overview {
-  @apply bg-accent text-primary;
+header#header {
+	display: grid;
+	grid-template-columns: auto 1fr auto auto;
 }
 
-.grid-temp-2 {
-  grid-template-rows: repeat(2, fit);
+@media screen and (max-width: 839px) {
+	header#header {
+		grid-template-columns: auto 1fr auto;
+	}
 }
-
-/* .parent {
-  display: grid;
-  grid-row: 2;
-}
-
-.child-1 {
-  grid-row-start: ;
-} */
