@@ -1,14 +1,14 @@
 import axios from 'axios';
 
 const weatherApi = axios.create({
-	baseURL: 'http://api.weatherapi.com/v1',
+	baseURL: 'https://api.weatherapi.com/v1',
 	params: {
 		key: process.env.REACT_APP_WEATHERAPI_API_KEY,
 	},
 });
 
 const weatherBit = axios.create({
-	baseURL: 'http://api.weatherbit.io/v2.0',
+	baseURL: 'https://api.weatherbit.io/v2.0',
 	params: {
 		key: process.env.REACT_APP_WEATHERBIT_API_KEY,
 	},
@@ -20,11 +20,11 @@ export const getCurrentWeather = async (searchQuery) => {
 	return res.data;
 };
 
-export const getWeatherData = async (lat, lon, numOfDays) => {
+export const getWeatherData = async (lat, lon, forecastDays = 7) => {
 	const [today, dayForecast] = await Promise.all([
 		await weatherApi.get(`/forecast.json?q=${lat}, ${lon}`),
 		await weatherBit.get('/forecast/daily', {
-			params: { lat, lon, days: numOfDays + 1 },
+			params: { lat, lon, days: forecastDays + 1 },
 		}),
 	]);
 

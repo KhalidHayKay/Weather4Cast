@@ -1,16 +1,15 @@
 import { format } from 'date-fns';
 
-const Location = ({ data: { location }, timestamp }) => {
-	console.log(location, new Date(location.localtime_epoch * 1000).getMinutes());
+const Location = ({ data: { location } }) => {
 	return (
 		<>
 			<h3 className='text-xl font-bold'>
-				{location.region}, {location.country}
+				{location.name}, {location.country}
 			</h3>
 			<h2 className='text-6xl sm:text-7xl font-bold mt-10'>
-				{format(timestamp, 'HH:mm')}
+				{format(location.localtime, 'HH:mm')}
 			</h2>
-			<p className='text-base'>{format(timestamp, 'EEEE, d MMM')}</p>
+			<p className='text-base'>{format(location.localtime, 'EEEE, d MMM')}</p>
 		</>
 	);
 };

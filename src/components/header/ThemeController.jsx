@@ -3,8 +3,18 @@ import { useEffect, useState } from 'react';
 const ThemeController = () => {
 	const [theme, setTheme] = useState('');
 
+	const storeThemeValue = (themeValue) => {
+		setTheme(themeValue);
+		sessionStorage.setItem('theme', JSON.stringify(themeValue));
+	};
+
 	useEffect(() => {
 		const page = document.querySelector('html[data-theme]');
+		const storedThemeValue = sessionStorage.getItem('theme');
+
+		if (storedThemeValue) {
+			setTheme(JSON.parse(storedThemeValue));
+		}
 
 		page.setAttribute('data-theme', theme);
 	}, [theme]);
@@ -35,30 +45,36 @@ const ThemeController = () => {
 					<input
 						type='radio'
 						name='theme-dropdown'
-						className='theme-controller btn btn-sm btn-block btn-ghost justify-start btn-active'
+						className={`${
+							theme === '' && 'bg-primary text-primary-content'
+						} theme-controller btn btn-sm btn-block btn-ghost justify-start`}
 						aria-label='System'
 						value='default'
-						onClick={() => setTheme('')}
+						onClick={() => storeThemeValue('')}
 					/>
 				</li>
 				<li>
 					<input
 						type='radio'
 						name='theme-dropdown'
-						className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
+						className={`${
+							theme === 'light' && 'bg-primary text-primary-content'
+						} theme-controller btn btn-sm btn-block btn-ghost justify-start`}
 						aria-label='Light'
 						value='light'
-						onClick={() => setTheme('light')}
+						onClick={() => storeThemeValue('light')}
 					/>
 				</li>
 				<li>
 					<input
 						type='radio'
 						name='theme-dropdown'
-						className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
+						className={`${
+							theme === 'dark' && 'bg-primary text-primary-content'
+						} theme-controller btn btn-sm btn-block btn-ghost justify-start`}
 						aria-label='Dark'
 						value='dark'
-						onClick={() => setTheme('dark')}
+						onClick={() => storeThemeValue('dark')}
 					/>
 				</li>
 			</ul>

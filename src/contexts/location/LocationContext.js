@@ -1,46 +1,45 @@
-import { createContext, useEffect, useState } from "react";
-import { handleError } from "./LocationAction";
+import { createContext, useEffect, useState } from 'react';
+import { handleError } from './LocationAction';
 
 const LocationContext = createContext();
 
 export const LocationProvider = ({ children }) => {
-    const [browserLocation, setBrowserLocation] = useState(null);
-    const [location, setLocation] = useState(null);
-    const [isBrowser, setIsBrowser] = useState(true);
+	const [browserLocation, setBrowserLocation] = useState(null);
+	const [location, setLocation] = useState(null);
+	const [isBrowserLocation, setIsBrowserLocation] = useState(true);
 
-    useEffect(() => {
-        const getCurrentLocation = () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        const latitude = position.coords.latitude;
-                        const longitude = position.coords.longitude;
-                        const timestamp = position.timestamp;
-        
-                        setBrowserLocation({latitude, longitude, timestamp});
-                        setLocation({latitude, longitude, timestamp});
-                    }, 
-                    handleError
-                );
-            } else {
-                alert("Geolocation is not supported by this browser.");
-            }
-        }
+	useEffect(() => {
+		const getCurrentLocation = () => {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition((position) => {
+					const latitude = position.coords.latitude;
+					const longitude = position.coords.longitude;
+					const timestamp = position.timestamp;
 
-        getCurrentLocation();
-    }, []);
+					setBrowserLocation({ latitude, longitude, timestamp });
+					setLocation({ latitude, longitude, timestamp });
+				}, handleError);
+			} else {
+				alert('Geolocation is not supported by this browser.');
+			}
+		};
 
-    return <LocationContext.Provider 
-        value={{
-            browserLocation,
-            location,
-            setLocation,
-            isBrowser, 
-            setIsBrowser
-        }}
-    >
-        {children}
-    </LocationContext.Provider>
-}
+		getCurrentLocation();
+	}, []);
+
+	return (
+		<LocationContext.Provider
+			value={{
+				browserLocation,
+				location,
+				setLocation,
+				isBrowserLocation,
+				setIsBrowserLocation,
+			}}
+		>
+			{children}
+		</LocationContext.Provider>
+	);
+};
 
 export default LocationContext;

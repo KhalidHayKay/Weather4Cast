@@ -8,12 +8,15 @@ export const WeatherProvider = ({ children }) => {
 	const { location } = useContext(LocationContext);
 
 	const [weatherData, setWeatherData] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchWeather = async () => {
-			const data = await getWeatherData(location.latitude, location.longitude, 7);
+			setIsLoading(true);
+			const data = await getWeatherData(location.latitude, location.longitude);
 
 			setWeatherData(data);
+			// setIsLoading(false);
 		};
 
 		location && fetchWeather();
@@ -23,6 +26,8 @@ export const WeatherProvider = ({ children }) => {
 		<WeatherContext.Provider
 			value={{
 				weatherData,
+				setWeatherData,
+				isLoading,
 			}}
 		>
 			{children}

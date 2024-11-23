@@ -1,9 +1,9 @@
-import { ReactComponent as Sunrise } from '../../resources/Sunrise_white.svg';
-import { ReactComponent as Sunset } from '../../resources/Sunset_white.svg';
-import { ReactComponent as Wind } from '../../resources/Wind_white.svg';
-import { ReactComponent as Humidity } from '../../resources/Humidity_white.svg';
-import { ReactComponent as Pressure } from '../../resources/Pressure_white.svg';
-import { ReactComponent as UV } from '../../resources/UV_white.svg';
+import { ReactComponent as Sunrise } from '../../resources/Sunrise.svg';
+import { ReactComponent as Sunset } from '../../resources/Sunset.svg';
+import { ReactComponent as Wind } from '../../resources/Wind.svg';
+import { ReactComponent as Humidity } from '../../resources/Humidity.svg';
+import { ReactComponent as Pressure } from '../../resources/Pressure.svg';
+import { ReactComponent as UV } from '../../resources/UV.svg';
 
 const WeatherInfo = ({ data: { current }, isCelsius }) => {
 	return (
@@ -89,6 +89,7 @@ const WeatherInfo = ({ data: { current }, isCelsius }) => {
 					<p className='text-[0.65rem] mobile:text-xsm sm:text-sm mobile:mt-2'>UV</p>
 				</div>
 			</div>
+			{/* <Humidity_dark className='size-10' /> */}
 		</>
 	);
 };
