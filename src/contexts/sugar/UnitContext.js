@@ -10,6 +10,7 @@ export const UnitProvider = ({ children }) => {
 			value={{
 				isCelsius,
 				setIsCelsius,
+				foor: 'bar',
 			}}
 		>
 			{children}

@@ -5,7 +5,6 @@ import UnitContext from '../../contexts/unit/UnitContext';
 
 const HourForecastItems = ({ hour }) => {
 	const { isCelsius } = useContext(UnitContext);
-	// console.log(hour)
 
 	return hour ? (
 		<div className='bg-primary/40 h-[90%] mobile:h-full px-1 py-3 sm:p-3 w-fit flex flex-col items-center rounded-3xl'>
