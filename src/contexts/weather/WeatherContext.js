@@ -9,6 +9,7 @@ export const WeatherProvider = ({ children }) => {
 
 	const [weatherData, setWeatherData] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
+	const [errorMessage, setErrorMessage] = useState(null);
 
 	useEffect(() => {
 		const fetchWeather = async () => {
@@ -16,7 +17,11 @@ export const WeatherProvider = ({ children }) => {
 			const data = await getWeatherData(location.latitude, location.longitude);
 
 			setWeatherData(data);
-			// setIsLoading(false);
+			setIsLoading(false);
+
+			if (data.error) {
+				setErrorMessage(data.error);
+			}
 		};
 
 		location && fetchWeather();
@@ -28,6 +33,7 @@ export const WeatherProvider = ({ children }) => {
 				weatherData,
 				setWeatherData,
 				isLoading,
+				errorMessage,
 			}}
 		>
 			{children}
